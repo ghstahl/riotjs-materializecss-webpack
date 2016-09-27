@@ -44,22 +44,23 @@ import 'whatwg-fetch';
           <div if={ results.length }>
             <ul>
               <li each={ results }>
-                <div class="mdl-card mdl-shadow--2dp demo-card-square">
-                  <div class="mdl-card__title mdl-card--expand">
-                    <image src="{Poster}">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="{Poster}">
                   </div>
-                  <div class="mdl-card__supporting-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenan convallis.
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                    <p><a href="http://www.imdb.com/title/{ imdbID }">{ Title }</a></p>
                   </div>
-                  <div class="mdl-card__actions mdl-card--border">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                      View Updates
-                    </a>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
                   </div>
                 </div>
 
-                <a href="http://www.imdb.com/title/{ imdbID }" target="_blank">{ Title }</a>
+
+
+
                 <span>{ Year }</span>
               </li>
             </ul>
