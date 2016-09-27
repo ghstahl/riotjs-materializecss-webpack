@@ -27,14 +27,16 @@ import 'whatwg-fetch';
             <tr>
               <th class="mdl-data-table__cell--non-numeric">Title</th>
               <th>Year</th>
-              <th>Unit price</th>
+              <th>Details</th>
             </tr>
             </thead>
             <tbody>
             <tr each={ this.results }>
               <td class="mdl-data-table__cell--non-numeric">{ this.Title }</td>
               <td>{ this.Year }</td>
-              <td>$2.90</td>
+              <td>
+                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">more</i></a>
+              </td>
             </tr>
             </tbody>
           </table>
@@ -78,6 +80,14 @@ import 'whatwg-fetch';
       this.results = [];
       this.error = false;
     }
+
+    this.on('mount', function() {
+      var self = this;
+      var restoredSession = JSON.parse(localStorage.getItem('movies'));
+      self.results = restoredSession;
+      self.update()
+    });
+
     /**
      * Debounce the api requests
      */
@@ -88,8 +98,12 @@ import 'whatwg-fetch';
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {
-        self.results = data.Search;
-        console.log(data.Search);
+        console.log(data);
+        localStorage.setItem("movies", JSON.stringify(data.Search));
+        console.log(localStorage.getItem("movies"));
+        var restoredSession = JSON.parse(localStorage.getItem('movies'));
+        console.log(restoredSession);
+        self.results = restoredSession;
       }).catch(function () {
         console.log("Booo");
       });
