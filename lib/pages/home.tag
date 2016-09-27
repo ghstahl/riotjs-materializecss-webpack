@@ -1,4 +1,6 @@
 import 'whatwg-fetch';
+import RiotControl from 'riotcontrol';
+
 
 <home>
 
@@ -59,10 +61,6 @@ import 'whatwg-fetch';
                     <p>Here is some more information about this product that is only revealed once clicked on.</p>
                   </div>
                 </div>
-
-
-
-
                 <span>{ Year }</span>
               </li>
             </ul>
@@ -83,55 +81,34 @@ import 'whatwg-fetch';
 
     this.on('mount', function() {
       var self = this;
-      var restoredSession = JSON.parse(localStorage.getItem('movies'));
-      self.results = restoredSession;
-      self.update()
-    });
-
-    /**
-     * Debounce the api requests
-     */
-    this.doApiRequest = function(search) {
-
-      var self = this;
-      var url = 'http://www.omdbapi.com/?s=' + search;
-      fetch(url).then(function (response) {
-        return response.json();
-      }).then(function (data) {
-        console.log(data);
-        localStorage.setItem("movies", JSON.stringify(data.Search));
-        console.log(localStorage.getItem("movies"));
-        var restoredSession = JSON.parse(localStorage.getItem('movies'));
-        console.log(restoredSession);
-        self.results = restoredSession;
-      }).catch(function () {
-        console.log("Booo");
+      RiotControl.on('movies_changed', function(movies) {
+        self.results = movies;
+        console.log('_handleMoviesChanged');
+        console.log(self.results);
+        self.update();
       });
-
-    }
-    /**
-     * Public api/methods
-     */
-
-
+      RiotControl.trigger('movies_localstorage');
+    });
 
     /**
      * Search callback
      */
     this.search = function(e) {
+      var searchTerm = this.s.value
 
-      var search = this.s.value
-
-      if (!search) {
+      if (searchTerm === undefined || !searchTerm) {
         this.resetData()
-      } else if (this.lastSearch != search && search.length > 1)  {
+      } else if (this.lastSearch != searchTerm && searchTerm.length > 1)  {
         this.resetData()
         this.isLoading = true
-        this.doApiRequest(search)
+        RiotControl.trigger('movies_search', { searchTerm: searchTerm });
+   //     this.doApiRequest(searchTerm)
       }
 
-      this.lastSearch = search
+      this.lastSearch = searchTerm
     }
   </script>
 
 </home>
+
+
