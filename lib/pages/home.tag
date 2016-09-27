@@ -49,8 +49,8 @@ import 'whatwg-fetch';
                     <img class="activator" src="{Poster}">
                   </div>
                   <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                    <p><a href="http://www.imdb.com/title/{ imdbID }">{ Title }</a></p>
+                    <span class="card-title activator grey-text text-darken-4">{ Title }<i class="material-icons right">more_vert</i></span>
+                    <p><a href="http://www.imdb.com/title/{ imdbID }">IMDB</a></p>
                   </div>
                   <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
