@@ -37,7 +37,7 @@ import RiotControl from 'riotcontrol';
               <td class="mdl-data-table__cell--non-numeric">{ this.Title }</td>
               <td>{ this.Year }</td>
               <td>
-                <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">more</i></a>
+                <a href="#movie-detail?imdbID={imdbID}" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">more</i></a>
               </td>
             </tr>
             </tbody>
@@ -103,6 +103,20 @@ import RiotControl from 'riotcontrol';
         this.isLoading = true
         RiotControl.trigger('movies_search', { searchTerm: searchTerm });
    //     this.doApiRequest(searchTerm)
+      }
+
+      this.lastSearch = searchTerm
+    }
+    this.detailedSearch = function(imdbID) {
+      var searchTerm = this.s.value
+
+      if (searchTerm === undefined || !searchTerm) {
+        this.resetData()
+      } else if (this.lastSearch != searchTerm && searchTerm.length > 1)  {
+        this.resetData()
+        this.isLoading = true
+        RiotControl.trigger('movie_fetch_detail', { imdbID: imdbID });
+        //     this.doApiRequest(searchTerm)
       }
 
       this.lastSearch = searchTerm
