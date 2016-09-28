@@ -1,6 +1,4 @@
-import 'whatwg-fetch';
 import RiotControl from 'riotcontrol';
-
 
 <movie-detail>
 

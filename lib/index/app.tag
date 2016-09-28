@@ -1,7 +1,8 @@
 import '../layouts/sidebar-materializecss.tag';
-
+import '../components/loading-indicator.tag';
 
 <app>
+    <loading-indicator></loading-indicator>
     <sidebar-materializecss title={this.title} menuItems = {this.menuItems}>
         <yield to="content">
             <div id="riot-subview"></div>
@@ -21,3 +22,4 @@ import '../layouts/sidebar-materializecss.tag';
     </script>
 
 </app>
+
