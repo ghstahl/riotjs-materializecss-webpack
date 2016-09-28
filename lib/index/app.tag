@@ -16,8 +16,10 @@ import '../components/loading-indicator.tag';
         })
         this.title = "Developer"
         this.menuItems = [
-            {name:'Name 1',href:'#home',view : 'home',materialIcon:'toll'},
-            {name:'Name 2',href:'#projects',view : 'projects'}
+            {name:'Movies',href:'#home',view : 'home',materialIcon:'toll'},
+            {name:'Name 2',href:'#projects',view : 'projects'},
+            {name:'Drag&Drop',href:'#drag-drop',view : 'drag-drop'}
+
         ]
     </script>
 
