@@ -11,14 +11,11 @@ import Sortable from '../js/Sortable.min.js';
     </div>
     <hr>
     <ul id="listA">
-        <li>foo 1</li>
-        <li>foo 2</li>
-        <li>foo 3</li>
+        <li each={_itemsListA}>{name}</li>
     </ul>
-
-
-
-    <ul id="listC"></ul>
+    <ul id="listC">
+        <li each={_itemsListC}>{name}</li>
+    </ul>
     <hr>
     <button onclick={moveLastToFirst}>Move Last To First</button>
 <style>
@@ -48,6 +45,7 @@ import Sortable from '../js/Sortable.min.js';
 </style>
     <script>
         var self = this
+
         self._items = [
             { name: 'c#' },
             { name: 'swift' },
@@ -55,6 +53,20 @@ import Sortable from '../js/Sortable.min.js';
             { name: 'python' },
             { name: 'javascript' }
         ]
+
+        self.inPlayItem = null;
+
+        self._itemsListA = [
+            { name: 'c#' },
+            { name: 'swift' },
+            { name: 'golang' },
+            { name: 'python' },
+            { name: 'javascript' }
+        ]
+        self._itemsListC= [
+            { name: 'javascript' }
+        ]
+
         var sortableOption = {
             onEnd: function (evt) {
                 console.log('move from', evt.oldIndex, 'to', evt.newIndex)
@@ -92,20 +104,33 @@ import Sortable from '../js/Sortable.min.js';
                     pull: 'clone',
                     put: false,
                 },
-                sort: false
-
+                sort: false,
+                onStart: function (/**Event*/evt) {
+                    var newItem = self._itemsListA[evt.oldIndex];
+                    self.inPlayItem = newItem;
+                },
+                onMove: function (/**Event*/evt) {
+                    var item = self._itemsListC.find(x => x.name === self.inPlayItem.name);
+                    if(item){
+                        return false;
+                    }
+                }
             });
-
-
-
-
-
             Sortable.create(self.listC, {
                 group: 'shared',
-                onAdd: function (evt) {
+                sort: false,
+                onMove: function (/**Event*/evt) {
                     console.log(evt)
-                    console.log('move from', evt.oldIndex, 'to', evt.newIndex)
-
+                },
+                onAdd: function (evt) {
+                    var newItem = self._itemsListA[evt.oldIndex];
+                    var item = self._itemsListC.find(x => x.name === newItem.name);
+                    if (item) {
+                        console.log("This item already exists");
+                    }
+                    else {
+                        self._itemsListC.push(newItem);
+                    }
                 }
             });
         })
