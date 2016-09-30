@@ -1,9 +1,8 @@
 import 'whatwg-fetch';
 import RiotControl from 'riotcontrol';
 
-
+import Sortable from '../js/Sortable.min.js';
 <home>
-
       <form onsubmit={ search }>
         <label>
           <span>

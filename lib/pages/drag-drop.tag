@@ -59,18 +59,7 @@ import Sortable from '../js/Sortable.min.js';
                     name: 'roles'
                 },
                 sort:false,
-                onRemove: function (evt) {
-                    console.log(evt.type)
-                    console.log(self.roleA)
-                    var items = self.roleA.getElementsByTagName("li");
-                    for (var i = 0; i < items.length; ++i) {
-                        // do something with items[i], which is a <li> element
-                        console.log(items[i]);
-                        console.log(items[i].getAttribute("data-role"));
-                    }
-                },
                 onAdd: function (evt) {
-
                    console.log(evt)
                 }
             });
@@ -81,10 +70,6 @@ import Sortable from '../js/Sortable.min.js';
                     name: 'roles'
                 },
                 sort:false,
-                onRemove: function (evt) {
-
-                    console.log(evt)
-                },
                 onAdd: function (evt) {
 
                     console.log(evt)
