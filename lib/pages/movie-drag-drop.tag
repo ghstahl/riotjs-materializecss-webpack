@@ -26,6 +26,9 @@ import Sortable from '../js/Sortable.min.js';
             </li>
         </ul>
         <ul class="collection" id="movieDetail">
+            <li class="collection-item">
+                Drag a movie here...
+            </li>
             <li  each={movieDetails} class="collection-item">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
