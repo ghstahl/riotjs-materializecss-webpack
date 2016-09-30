@@ -5,14 +5,10 @@ import Sortable from '../js/Sortable.min.js';
 
         <ul class="collection" id="roleA">
 
-            <li each={_itemsRoleA} data-role="{name} class="collection-item">
+            <li each={_itemsRoleA} data-role="{name}" class="collection-item">
                 <div>{name}<i class="material-icons">send</i></div>
             </li>
-
-
-
         </ul>
-
 
         <ul id="roleB">
             <li each={_itemsRoleB} data-role="{name}">{name}</li>
@@ -78,7 +74,6 @@ import Sortable from '../js/Sortable.min.js';
                    console.log(evt)
                 }
             });
-
 
 
             Sortable.create(self.roleB, {

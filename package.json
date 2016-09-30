@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle": "webpack -p -d --progress --colors",
     "build": "npm-run-all  bundle",
-    "serve": "webpack-dev-server --hot --progress --colors",
+    "serve": "webpack-dev-server --content-base www/ --hot --progress --colors",
     "dev": "npm-run-all  serve"
   },
   "repository": {

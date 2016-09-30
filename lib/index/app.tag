@@ -18,7 +18,8 @@ import '../components/loading-indicator.tag';
         this.menuItems = [
             {name:'Movies',href:'#home',view : 'home',materialIcon:'toll'},
             {name:'Name 2',href:'#projects',view : 'projects'},
-            {name:'Drag&Drop',href:'#drag-drop',view : 'drag-drop'}
+            {name:'Drag&Drop',href:'#drag-drop',view : 'drag-drop'},
+            {name:'Drag&Drop2',href:'#drag-drop2',view : 'drag-drop2'}
 
         ]
     </script>
