@@ -1,4 +1,4 @@
-import '../js/materialize.js';
+
 import '../js/ba-tiny-pubsub.js';
 <sidebar-materializecss>
     <header>
