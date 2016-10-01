@@ -117,6 +117,9 @@ import Sortable from '../js/Sortable.min.js';
                 self.update();
             });
             RiotControl.on('movies_changed', function(movies) {
+                self.emptyUL(self.moviecollection);
+                self.results = {};
+                self.update();
                 self.results = movies;
                 console.log(self.results);
                 self.update();
