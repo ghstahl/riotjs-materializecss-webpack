@@ -30,7 +30,7 @@ import Sortable from '../js/Sortable.min.js';
                 Drag a movie here...
             </li>
             <li  each={movieDetails} class="collection-item">
-                <div class="card">
+                 <div id="aside" class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="{Poster}">
                     </div>
@@ -48,7 +48,9 @@ import Sortable from '../js/Sortable.min.js';
     <style >
 
 
-
+        #aside {
+            width:350px;
+        }
     .sortable-ghost {
         opacity: .3;
         background: #f60;
