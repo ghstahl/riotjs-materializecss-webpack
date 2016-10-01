@@ -47,7 +47,7 @@ import Sortable from '../js/Sortable.min.js';
           <div if={ results.length }>
             <ul>
               <li each={ results }>
-                <div class="card">
+                <div id="aside" class="card">
                   <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator" src="{Poster}">
                   </div>
@@ -64,7 +64,11 @@ import Sortable from '../js/Sortable.min.js';
               </li>
             </ul>
           </div>
-
+<style>
+  #aside {
+    width:350px;
+  }
+</style>
 
   <script >
     this.lastSearch = null;

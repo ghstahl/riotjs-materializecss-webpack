@@ -2,7 +2,7 @@ import RiotControl from 'riotcontrol';
 
 <movie-detail>
 
-    <div class="card">
+    <div id="aside" class="card">
         <div class="card-image waves-effect waves-block waves-light">
             <img class="activator" src="{result.Poster}">
         </div>
@@ -15,7 +15,11 @@ import RiotControl from 'riotcontrol';
             <p>{ result.Plot }</p>
         </div>
     </div>
-
+<style>
+    #aside {
+             width:350px;
+         }
+</style>
     <script>
         this.result = {};
         this.on('mount', function() {
