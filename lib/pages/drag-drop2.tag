@@ -29,6 +29,19 @@ import Sortable from '../js/Sortable.min.js';
         <button class="btn waves-effect waves-light" onclick="{updateRoles}"  >Submit</button>
 
 
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+    <a href="#modal1" data-toggle="modal" class=" modal-trigger waves-effect waves-light blue accent-2 white-text btn">Add Comment</a>
+    <!-- Modal Trigger -->
+    <button data-target="modal1" class="btn waves-effect waves-light modal-trigger">Modal</button>
     <style >
 
 
@@ -78,6 +91,8 @@ import Sortable from '../js/Sortable.min.js';
             }
         }
         self.on('mount', function() {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
 
             Sortable.create(self.roleA, {
                 group: {

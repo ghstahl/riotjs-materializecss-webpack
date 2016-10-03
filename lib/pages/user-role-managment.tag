@@ -1,4 +1,4 @@
-<projects>
+<user-role-management>
   <div class="row">
     <form class="col s12">
       <div class="row">
@@ -31,4 +31,4 @@
       </div>
     </form>
   </div>
-</projects>
+</user-role-management>
