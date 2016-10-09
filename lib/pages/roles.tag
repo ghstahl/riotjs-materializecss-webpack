@@ -4,7 +4,7 @@ import RiotControl from 'riotcontrol';
 
 
     <ul class="collapsible collection with-header">
-        <li class="collection-header"><h4>First Names</h4></li>
+        <li class="collection-header"><h4>Roles</h4></li>
         <li each="{ name, i in roles }">
             <div class="collapsible-header"><i class="material-icons">mode_edit</i>{ name }</div>
             <div class="collapsible-body">
@@ -28,7 +28,7 @@ import RiotControl from 'riotcontrol';
                        onclick="{onAddRole}"
                        class="btn-floating btn-medium waves-effect waves-light "><i class="material-icons">add</i></a>
                 </div>
-                <div class="input-field col s3">
+                <div class="input-field col s10">
                     <input
                             type="text" class="validate"
                              oninput = { onRoleChange }
@@ -87,15 +87,14 @@ import RiotControl from 'riotcontrol';
             self.isRoleAddable = false;
 
             if (roleTerm === undefined || !roleTerm) {
-                self.resetData()
+
             } else if (this.lastRole != roleTerm && roleTerm.length > 1)  {
-                self.resetData()
                 self.isRoleAddable = true;
+                self.lastRole = roleTerm
             }
             console.log(self.isRoleAddable)
-
-            self.lastRole = roleTerm
         }
+        
         self.onKeyPress = function(e) {
             if(!e)
                 e=window.event;
