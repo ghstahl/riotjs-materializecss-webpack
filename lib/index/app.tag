@@ -22,7 +22,8 @@ import '../components/loading-indicator.tag';
             {name:'Drag&Drop',href:'#drag-drop',view : 'drag-drop'},
             {name:'Drag&Drop2',href:'#drag-drop2',view : 'drag-drop2'},
             {name:'Movie Drag Drop',href:'#movie-drag-drop',view : 'movie-drag-drop'},
-            {name:'ToDo:riotux',href:'#todo',view : 'todo'}
+            {name:'ToDo:riotux',href:'#todo',view : 'todo'},
+            {name:'roles',href:'#roles',view : 'roles'}
 
 
 
