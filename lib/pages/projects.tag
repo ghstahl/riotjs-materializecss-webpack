@@ -2,7 +2,7 @@ import RiotControl from 'riotcontrol';
 
 <projects>
   <div class="row">
-    <form class="col s12">
+    <form class="col s12" onkeypress="return event.keyCode != 13">
       <div class="row">
         <div class="input-field col s6">
           <input id="first_name" type="text" class="validate">
@@ -60,13 +60,15 @@ import RiotControl from 'riotcontrol';
           <div class="row">
             <div class="input-field col s4">
               <input   type="text" class="validate"
-                       oninput={ onRoleChange }
-                       onchange={ onRoleChange }
+                       oninput = { onRoleChange }
+                       onchange = { onRoleChange }
+                       onkeypress = { onKeyPress }
                        name='r' >
               <label for="username">Role</label>
             </div>
             <div class="input-field col s3">
-              <a disabled={ !isRoleAddable }
+              <a id="addRoleButton"
+                 disabled={ !isRoleAddable }
                  onclick="{onAddRole}"
                  class="waves-effect waves-light btn">Add</a>
             </div>
@@ -75,13 +77,15 @@ import RiotControl from 'riotcontrol';
       </div>
     </div>
   </div>
-  
+
   <script>
 
     var self = this;
     self.roles = ["Should","Never","See","This"]
     self.isRoleAddable = false;
     self.lastRole = null;
+
+
 
     this.on('mount', function() {
       console.log('mount',this)
@@ -115,6 +119,7 @@ import RiotControl from 'riotcontrol';
       RiotControl.trigger('roles_add',self.lastRole);
       self.lastRole = "";
       self.r.value  = self.lastRole;
+      self.isRoleAddable =  false;
     }
     /**
      * Search callback
@@ -134,12 +139,23 @@ import RiotControl from 'riotcontrol';
 
       self.lastRole = roleTerm
     }
-    self.onRoleKeyPress = function(e) {
+    self.onKeyPress = function(e) {
       if(!e)
         e=window.event;
       var keyCode = e.keyCode || e.which;
-      console.log('onRoleKeyPress',keyCode,e);
+      console.log('onKeyPress',keyCode,e);
+      if(keyCode== 13){
+        event.preventDefault();
+        if(self.isRoleAddable){
+          self.onAddRole();
+         }
+        return false;
+      }else{
+        return true;
+      }
     }
+
+
     self.collapseAll = () =>{
       $(".collapsible-header").removeClass(function(){
         return "active";
