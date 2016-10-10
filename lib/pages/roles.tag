@@ -25,7 +25,7 @@ import RiotControl from 'riotcontrol';
                 <div class="input-field col s0">
                     <a id="addRoleButton"
                        disabled={ !isRoleAddable }
-                       onclick="{onAddRole}"
+                       onclick={onAddRole}
                        class="btn-floating btn-medium waves-effect waves-light "><i class="material-icons">add</i></a>
                 </div>
                 <div class="input-field col s10">
@@ -50,23 +50,27 @@ import RiotControl from 'riotcontrol';
         self.isRoleAddable = false;
         self.lastRole = null;
 
-        this.on('mount', function() {
+
+        self.onRolesChanged =  function(roles) {
+            console.log('roles_changed',roles)
+            self.roles = roles;
+            self.update();
+        }
+
+        self.on('unmount', function() {
+            RiotControl.off('roles_changed', self.onRolesChanged)
+        });
+
+        self.on('mount', function() {
             console.log('mount',this)
             $('.collapsible').collapsible({
                 accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
             });
-
-            var self = this;
-            RiotControl.on('roles_changed', function(roles) {
-                console.log('roles_changed',roles)
-                self.roles = roles;
-                self.update();
-            });
+            RiotControl.on('roles_changed', self.onRolesChanged)
             RiotControl.trigger('roles_fetch');
+            self.calcOnRoleAddable();
         });
 
-        self.resetData = function() {
-        }
         self.onRemoveRole = (e) =>{
 
             console.log('onRemoveRole',e,e.target.dataset.message)
@@ -75,23 +79,29 @@ import RiotControl from 'riotcontrol';
         }
 
         self.onAddRole = function() {
-            console.log('onAddRole',self.lastRole)
-            RiotControl.trigger('roles_add',self.lastRole);
-            self.lastRole = "";
-            self.r.value  = self.lastRole;
-            self.isRoleAddable =  false;
+            if(self.isRoleAddable == true){
+                console.log('onAddRole',self.lastRole)
+                RiotControl.trigger('roles_add',self.lastRole);
+                self.lastRole = "";
+                self.r.value  = self.lastRole;
+                self.calcOnRoleAddable();
+            }
+        }
+        self.calcOnRoleAddable = ()=>{
+            if(self.lastRole && self.lastRole.length > 1){
+                self.isRoleAddable =  true;
+                self.addRoleCallback = self.onAddRole;
+            }else{
+                self.isRoleAddable =  false;
+                self.addRoleCallback = null;
+            }
         }
         self.onRoleChange = function(e) {
-            console.log(self.r);
+            console.log('onRoleChange',self.r,self.r.value);
             var roleTerm = self.r.value
-            self.isRoleAddable = false;
+            self.lastRole = roleTerm
 
-            if (roleTerm === undefined || !roleTerm) {
-
-            } else if (this.lastRole != roleTerm && roleTerm.length > 1)  {
-                self.isRoleAddable = true;
-                self.lastRole = roleTerm
-            }
+            self.calcOnRoleAddable();
             console.log(self.isRoleAddable)
         }
 
