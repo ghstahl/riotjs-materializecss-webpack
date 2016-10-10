@@ -94,7 +94,7 @@ import RiotControl from 'riotcontrol';
             }
             console.log(self.isRoleAddable)
         }
-        
+
         self.onKeyPress = function(e) {
             if(!e)
                 e=window.event;
