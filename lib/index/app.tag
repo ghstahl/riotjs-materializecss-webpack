@@ -11,10 +11,13 @@ import RiotControl from 'riotcontrol';
     </sidebar-materializecss>
 
     <script >
-        this.on('mount', function(){
-
+        this.on('unmount', function(){
             console.log('app Mounted') // Succeeds, fires once (per mount)
-            RiotControl.trigger('seconary_init');
+            RiotControl.trigger('app_unmount');
+        })
+        this.on('mount', function(){
+            console.log('app Mounted') // Succeeds, fires once (per mount)
+            RiotControl.trigger('app_mount');
         })
         this.title = "Developer"
         this.menuItems = [
