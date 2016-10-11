@@ -1,5 +1,6 @@
 import '../layouts/sidebar-materializecss.tag';
 import '../components/loading-indicator.tag';
+import RiotControl from 'riotcontrol';
 
 <app>
     <loading-indicator></loading-indicator>
@@ -13,6 +14,7 @@ import '../components/loading-indicator.tag';
         this.on('mount', function(){
 
             console.log('app Mounted') // Succeeds, fires once (per mount)
+            RiotControl.trigger('seconary_init');
         })
         this.title = "Developer"
         this.menuItems = [
